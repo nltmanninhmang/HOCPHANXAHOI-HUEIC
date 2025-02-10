@@ -1,0 +1,24 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+
+    # Redirect /dashboard to home.php
+    RewriteRule ^dashboard$ app/views/home.php [L]
+    ##LEVEL : BÍ THƯ/PHÓ BÍ THƯ CHI ĐOÀN##
+    RewriteRule ^list/students$ app/views/students/students-list.php [L]
+    RewriteRule ^add/students$ app/views/students/add-students.php [L]
+
+    ##LEVEL : BÍ THƯ LIÊN CHI ĐOÀN##
+
+    ##LEVEL : ĐOÀN TRƯỜNG##
+    RewriteRule ^admin/accounts$ app/views/admin/accounts-list.php [L]
+    RewriteRule ^admin/accounts/add$ app/views/admin/add-accounts.php [L]
+
+    ##API XỬ LÝ YÊU CẦU##
+    RewriteRule ^api/accounts$ app/controllers/admin/add-accounts.php [L]
+
+    # Optional: Hide .php extension for other pages
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ $1.php [L,QSA]
+</IfModule>
