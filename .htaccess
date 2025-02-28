@@ -1,24 +1,18 @@
-<IfModule mod_rewrite.c>
-    RewriteEngine On
-    RewriteBase /
+RewriteEngine On
 
-    # Redirect /dashboard to home.php
-    RewriteRule ^dashboard$ app/views/home.php [L]
-    ##LEVEL : BÍ THƯ/PHÓ BÍ THƯ CHI ĐOÀN##
-    RewriteRule ^list/students$ app/views/students/students-list.php [L]
-    RewriteRule ^add/students$ app/views/students/add-students.php [L]
+RewriteRule ^dashboard$ index.php [L]
+RewriteRule ^auth/login$ public/client/authLogin.php [L]
+##LEVEL : BÍ THƯ/PHÓ BÍ THƯ CHI ĐOÀN##
+RewriteRule ^list/students$ public/admin/studentsList.php [L]
+RewriteRule ^add/students$ public/admin/studentsAdd.php [L]
+RewriteRule ^absent/students$ app/views/students/students-absent.php [L]
+##LEVEL : BÍ THƯ LIÊN CHI ĐOÀN##
 
-    ##LEVEL : BÍ THƯ LIÊN CHI ĐOÀN##
+##LEVEL : ĐOÀN TRƯỜNG##
+RewriteRule ^admin/accounts$ public/admin/accountsList.php [L]
+RewriteRule ^admin/accounts/add$ public/admin/accountsAdd.php [L]
+RewriteRule ^admin/unionbranch$ public/admin/unionBranchList.php [L]
+RewriteRule ^admin/unionbranch/add$ public/admin/unionBranchAdd.php [L]
 
-    ##LEVEL : ĐOÀN TRƯỜNG##
-    RewriteRule ^admin/accounts$ app/views/admin/accounts-list.php [L]
-    RewriteRule ^admin/accounts/add$ app/views/admin/add-accounts.php [L]
-
-    ##API XỬ LÝ YÊU CẦU##
-    RewriteRule ^api/accounts$ app/controllers/admin/add-accounts.php [L]
-
-    # Optional: Hide .php extension for other pages
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteRule ^(.*)$ $1.php [L,QSA]
-</IfModule>
+##API XỬ LÝ YÊU CẦU##
+RewriteRule ^api/accounts$ app/controllers/admin/add-accounts.php [L]
